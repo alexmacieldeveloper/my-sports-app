@@ -15,31 +15,33 @@ model Team {
   logo      String? 
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-  matchesHome Match[]   @relation("HomeTeam")
-  matchesAway Match[]   @relation("AwayTeam")
+  homeMatches Match[]  @relation("HomeMatches")
+  awayMatches Match[]  @relation("AwayMatches")
 }
 
-model Championship {
+model League {
   id        Int      @id @default(autoincrement())
-  name      String
-  season    String?
+  name      String   @unique
   country   String?
+  season    Int?
+  logo      String?
+  matches   Match[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  matches   Match[]
 }
 
 model Match {
-  id              Int          @id @default(autoincrement())
-  date            DateTime
-  homeTeam        Team         @relation("HomeTeam", fields: [homeTeamId], references: [id])
-  homeTeamId      Int
-  awayTeam        Team         @relation("AwayTeam", fields: [awayTeamId], references: [id])
-  awayTeamId      Int
-  championship    Championship @relation(fields: [championshipId], references: [id])
-  championshipId  Int
-  homeScore       Int?
-  awayScore       Int?
-  createdAt       DateTime     @default(now())
-  updatedAt       DateTime     @updatedAt
+  id        Int      @id @default(autoincrement())
+  date      DateTime
+  homeTeam  Team     @relation("HomeMatches", fields: [homeTeamId], references: [id])
+  homeTeamId Int
+  awayTeam  Team     @relation("AwayMatches", fields: [awayTeamId], references: [id])
+  awayTeamId Int
+  league    League   @relation(fields: [leagueId], references: [id])
+  leagueId  Int
+  status    String?
+  scoreHome Int?
+  scoreAway Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
