@@ -5,6 +5,7 @@ export interface Team {
   name: string;
   code?: string;
   country?: string;
+  logo?: string;
 }
 
 export function useTeams() {

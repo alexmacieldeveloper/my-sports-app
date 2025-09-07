@@ -63,6 +63,7 @@ export default function Home() {
             <TeamCard
               key={team.id}
               name={team.name}
+                logo={team.logo}
               code={team.code}
               country={team.country}
             />
