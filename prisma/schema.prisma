@@ -21,7 +21,8 @@ model Team {
 
 model League {
   id        Int      @id @default(autoincrement())
-  name      String   @unique
+  apiId     Int      @unique
+  name      String   
   country   String?
   season    Int?
   logo      String?

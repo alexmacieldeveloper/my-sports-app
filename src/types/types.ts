@@ -13,6 +13,8 @@ export interface ApiLeagueItem {
 }
 
 export interface LeagueData {
+  id: number;
+  apiId: number;
   name: string;
   country?: string;
   season?: number;
@@ -64,6 +66,7 @@ export interface MatchData {
   homeTeamName: string;
   awayTeamName: string;
   leagueName: string;
+  leagueId: number;
   status?: string;
   scoreHome?: number;
   scoreAway?: number;
